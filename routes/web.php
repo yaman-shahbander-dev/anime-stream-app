@@ -12,3 +12,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('shows/{show}', [AnimeController::class, 'animeDetails'])->name('show.details');
+
+Route::middleware(['auth'])->group(function () {
+    Route::post('shows/create/{show}', [AnimeController::class, 'animeCreate'])->name('show.create.comments');
+    Route::post('shows/follow/{show}', [AnimeController::class, 'animeFollow'])->name('show.follow');
+    Route::get('shows/show-watching/{show}/{episode}', [AnimeController::class, 'animeWatching'])->name('show.watching');
+});
