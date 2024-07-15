@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions\ShowActions;
+namespace App\Actions\ShowsActions;
 
 use App\Models\Show\Show;
 

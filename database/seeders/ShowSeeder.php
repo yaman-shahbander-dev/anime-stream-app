@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Enums\GenreEnum;
 
 class ShowSeeder extends Seeder
 {
@@ -22,7 +23,7 @@ class ShowSeeder extends Seeder
                 'studios' => 'Lerche',
                 'date_aired' => 'Oct 02, 2019 to ?',
                 'status' => 'Airing',
-                'genre' => 'Action',
+                'genre' => GenreEnum::ADVENTURE->value,
                 'duration' => '24 min/ep',
                 'quality' => 'HD'
             ],
@@ -34,7 +35,7 @@ class ShowSeeder extends Seeder
                 'studios' => 'Lerche',
                 'date_aired' => 'Oct 02, 2019 to ?',
                 'status' => 'Airing',
-                'genre' => 'Magic',
+                'genre' => GenreEnum::MAGIC->value,
                 'duration' => '29 min/ep',
                 'quality' => 'Full HD'
             ]

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\ShowService;
+use App\Services\ShowsService;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -12,7 +12,7 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct(protected ShowService $showService)
+    public function __construct(protected ShowsService $showsService)
     {
         $this->middleware('auth');
     }
@@ -24,10 +24,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $shows = $this->showService->getShows();
+        $shows = $this->showsService->getShows();
+        $trendingShows = $this->showsService->getTrendingShows();
+        $adventureShows = $this->showsService->getAdventureShows();
+        $recentShows = $this->showsService->getRecentlyAddedShows();
+        $liveShows = $this->showsService->getLiveShows();
+        $forYouShows = $this->showsService->getForYouShows();
 
         return view('home', [
-            'shows' => $shows
+            'shows' => $shows,
+            'trendingShows' => $trendingShows,
+            'adventureShows' => $adventureShows,
+            'recentShows' => $recentShows,
+            'liveShows' => $liveShows,
+            'forYouShows' => $forYouShows,
         ]);
     }
 }
