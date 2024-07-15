@@ -17,12 +17,16 @@ class FollowSeeder extends Seeder
             [
                 'show_id' => 1,
                 'user_id' => 1,
+                'show_image' => 'hero-1.jpg',
+                'show_name' => 'Fate / Stay Night: Unlimited Blade Works',
                 'created_at' => now(),
                 'updated_at' => now()
             ],
             [
                 'show_id' => 2,
                 'user_id' => 1,
+                'show_image' => 'trend-1.jpg',
+                'show_name' => 'The Seven Deadly Sins: Wrath of the Gods',
                 'created_at' => now(),
                 'updated_at' => now()
             ],

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Anime;
 use App\Helpers\OperationResult;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateCommentRequest;
+use App\Models\Category\Category;
 use App\Models\Episode\Episode;
 use App\Models\Show\Show;
 use App\Services\ShowService;
@@ -54,7 +55,7 @@ class AnimeController extends Controller
 
     public function animeFollow(Show $show)
     {
-        $result = $this->showService->follow($show->id);
+        $result = $this->showService->follow($show);
 
         if ($result instanceof OperationResult) {
             response()->json([
@@ -79,5 +80,24 @@ class AnimeController extends Controller
         ];
 
         return $this->showService->renderShowWatchingView($attributes);
+    }
+
+    public function category(Category $category)
+    {
+        $shows = $this->showService->getShowsByCategory($category);
+
+        if ($shows != null) {
+            $forYouShows = $this->showService->getForYouShowsByCategory($category);
+
+            $attributes = [
+                'shows' => $shows,
+                'categoryName' => $category->name,
+                'forYouShows' => $forYouShows
+            ];
+
+            return $this->showService->renderShowsOfCategory($attributes);
+        }
+
+        return $shows;
     }
 }

@@ -51,10 +51,10 @@
                                     <li class="active"><a href="./index.html">Homepage</a></li>
                                     <li><a href="./categories.html">Categories <span class="arrow_carrot-down"></span></a>
                                         <ul class="dropdown">
-                                            <li><a href="./categories.html">Romance</a></li>
-                                            <li><a href="./categories.html">Adventure </a></li>
-                                            <li><a href="./categories.html">Magic</a></li>
-                                            <li><a href="./categories.html">Fantasy</a></li>
+                                            @foreach($categories as $category)
+                                                <li><a href="{{ route('show.category', ['category' => $category->id]) }}">{{ $category->name }}</a></li>
+
+                                            @endforeach
                                         </ul>
                                     </li>
                                 </ul>
@@ -72,11 +72,6 @@
                                         </li>
                                     @endif
 
-{{--                                    @if (Route::has('register'))--}}
-{{--                                        <li class="nav-item">--}}
-{{--                                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>--}}
-{{--                                        </li>--}}
-{{--                                    @endif--}}
                                 @else
                                     <li class="nav-item dropdown">
                                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -84,6 +79,10 @@
                                         </a>
 
                                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                            <a class="dropdown-item" href="{{ route('users.followed.shows') }}">
+                                                Followed Shows
+                                            </a>
+
                                             <a class="dropdown-item" href="{{ route('logout') }}"
                                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

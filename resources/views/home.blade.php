@@ -13,7 +13,7 @@
                                 <div class="label">{{ $show->genre }}</div>
                                 <h2>{{ $show->name }}</h2>
                                 <p>{{ $show->description }}</p>
-                                <a href="anime-watching.html"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
+                                <a href="{{ route('show.watching', ['show' => $show->id, 'episode' => $show->episodes->first()->id]) }}"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>

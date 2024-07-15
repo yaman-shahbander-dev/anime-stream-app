@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             FollowSeeder::class,
             ViewSeeder::class,
             EpisodeSeeder::class,
+            CategorySeeder::class,
         ]);
     }
 }

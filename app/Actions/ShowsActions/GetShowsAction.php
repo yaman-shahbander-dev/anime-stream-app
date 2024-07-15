@@ -9,6 +9,7 @@ class GetShowsAction
     public function __invoke()
     {
         return Show::query()
+            ->with('episodes')
             ->take(4)
             ->get();
     }

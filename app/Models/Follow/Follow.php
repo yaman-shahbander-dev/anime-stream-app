@@ -14,7 +14,7 @@ class Follow extends Model
 
     protected $table = 'follows';
 
-    protected $fillable = ['show_id', 'user_id', 'created_at', 'updated_at'];
+    protected $fillable = ['show_id', 'user_id', 'show_image', 'show_name' ,'created_at', 'updated_at'];
 
     public function show(): BelongsTo
     {
