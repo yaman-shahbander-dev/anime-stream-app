@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Anime\AnimeController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Admin\AdminController;
 
 Auth::routes();
 
@@ -30,4 +31,16 @@ Route::controller(AnimeController::class)
         Route::get('category/{category}', 'category')->name('show.category');
     });
 
+Route::controller(AdminController::class)
+    ->prefix('admins/')
+    ->group(function () {
+        Route::get('login', 'loginForm')->name('login.form')->middleware('check-for-auth');
+        Route::post('login', 'login')->name('login.admin');
+
+        Route::middleware('auth:admin')
+            ->group(function () {
+                Route::get('dashboard', 'index')->name('dashboard.admin');
+            });
+
+    });
 

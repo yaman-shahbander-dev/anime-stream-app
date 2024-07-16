@@ -45,10 +45,9 @@ class AnimeController extends Controller
         $comment = $this->showService->createComment($request->comment, $show);
 
         if ($comment instanceof OperationResult) {
-            return response()->json([
-                'message' => $comment->getMessage(),
-                'data' => null
-            ], Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->with([
+                'message' => $comment->getMessage()
+            ]);
         }
 
         return redirect()->back()->with(['success' => 'Comment Inserted Successfully!']);
@@ -59,10 +58,9 @@ class AnimeController extends Controller
         $result = $this->showService->follow($show);
 
         if ($result instanceof OperationResult) {
-            response()->json([
-                'message' => $result->getMessage(),
-                'data' => null
-            ], Response::HTTP_BAD_REQUEST);
+            return redirect()->back()->with([
+                'message' => $result->getMessage()
+            ]);
         }
 
         return redirect()->back()->with(['success' => 'You are following the show!']);
