@@ -40,7 +40,10 @@ Route::controller(AdminController::class)
         Route::middleware('auth:admin')
             ->group(function () {
                 Route::get('dashboard', 'index')->name('dashboard.admin');
-            });
+                Route::get('admins', 'admins')->name('dashboard.admins');
 
+                Route::get('create', 'create')->name('dashboard.admins.create');
+                Route::post('store', 'store')->name('dashboard.admins.store');
+            });
     });
 

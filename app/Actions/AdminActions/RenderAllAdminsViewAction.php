@@ -2,10 +2,11 @@
 
 namespace App\Actions\AdminActions;
 
-class RenderAdminIndexAction
+
+class RenderAllAdminsViewAction
 {
     public function __invoke(array $attributes)
     {
-        return view('admins.index', $attributes);
+        return view('admins.all-admins', $attributes);
     }
 }

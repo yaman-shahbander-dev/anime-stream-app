@@ -6,7 +6,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Shows</h5>
                     <!-- <h6 class="card-subtitle mb-2 text-muted">Bootstrap 4.0.0 Snippet by pradeep330</h6> -->
-                    <p class="card-text">number of shows: 8</p>
+                    <p class="card-text">number of shows: {{ $showsCount }}</p>
 
                 </div>
             </div>
@@ -16,7 +16,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Episodes</h5>
 
-                    <p class="card-text">number of episodes: 4</p>
+                    <p class="card-text">number of episodes: {{ $episodesCount }}</p>
 
                 </div>
             </div>
@@ -26,7 +26,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Genres</h5>
 
-                    <p class="card-text">number of genres: 4</p>
+                    <p class="card-text">number of genres: {{ $categoriesCount }}</p>
 
                 </div>
             </div>
@@ -36,7 +36,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Admins</h5>
 
-                    <p class="card-text">number of admins: 3</p>
+                    <p class="card-text">number of admins: {{ $adminsCount }}</p>
 
                 </div>
             </div>
