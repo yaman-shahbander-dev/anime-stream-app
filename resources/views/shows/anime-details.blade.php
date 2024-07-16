@@ -107,14 +107,18 @@
                         @endforeach
                     </div>
                     <div class="anime__details__form">
+                        @if(isset(auth()->user()->id))
                         <div class="section-title">
                             <h5>Your Comment</h5>
                         </div>
-                        <form action="{{ route('show.create.comments', ['show' => $show->id]) }}" method="POST">
-                            @csrf
-                            <textarea name="comment" placeholder="Your Comment"></textarea>
-                            <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
-                        </form>
+                            <form action="{{ route('show.create.comments', ['show' => $show->id]) }}" method="POST">
+                                @csrf
+                                <textarea name="comment" placeholder="Your Comment"></textarea>
+                                <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
+                            </form>
+                        @else
+                            <p class="alert alert-success">Login to be able to comment!</p>
+                        @endif
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4">

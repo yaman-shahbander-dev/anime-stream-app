@@ -9,7 +9,8 @@ class GetShowViewsCountAction
 {
     public function __invoke(int $showId)
     {
-        return View::query()
+        $user = Auth::user();
+        return $user && View::query()
             ->where([
                 'show_id' => $showId,
                 'user_id' => Auth::user()->id

@@ -17,7 +17,9 @@ use App\Actions\ShowActions\GetShowsByCategoryAction;
 use App\Actions\ShowActions\GetShowViewsCountAction;
 use App\Actions\ShowActions\RenderAnimeDetailsViewAction;
 use App\Actions\ShowActions\RenderAnimeWatchingViewAction;
+use App\Actions\ShowActions\RenderSearchViewAction;
 use App\Actions\ShowActions\RenderShowsOfCategoryAction;
+use App\Actions\ShowActions\SearchShowsAction;
 use App\Models\Category\Category;
 use App\Models\Show\Show;
 
@@ -96,5 +98,15 @@ class ShowService
     public function getForYouShowsByCategory(Category $category)
     {
         return app(GetForYouShowsByCategoryAction::class)($category);
+    }
+
+    public function searchShows(string $show)
+    {
+        return app(SearchShowsAction::class)($show);
+    }
+
+    public function renderSearchView(array $attributes)
+    {
+        return app(RenderSearchViewAction::class)($attributes);
     }
 }

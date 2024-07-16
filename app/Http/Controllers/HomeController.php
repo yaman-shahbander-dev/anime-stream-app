@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct(protected ShowsService $showsService)
     {
-        $this->middleware('auth');
+//        $this->middleware('auth');
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Anime;
 use App\Helpers\OperationResult;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateCommentRequest;
+use App\Http\Requests\SearchShowsRequest;
 use App\Models\Category\Category;
 use App\Models\Episode\Episode;
 use App\Models\Show\Show;
@@ -99,5 +100,16 @@ class AnimeController extends Controller
         }
 
         return $shows;
+    }
+
+    public function search(SearchShowsRequest $request)
+    {
+        $shows = $this->showService->searchShows($request->show);
+
+        $attributes = [
+            'searches' => $shows
+        ];
+
+        return $this->showService->renderSearchView($attributes);
     }
 }

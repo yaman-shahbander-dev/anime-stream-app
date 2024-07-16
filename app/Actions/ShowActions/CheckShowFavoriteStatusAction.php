@@ -9,11 +9,13 @@ class CheckShowFavoriteStatusAction
 {
     public function __invoke(int $showId)
     {
-        return Follow::query()
-            ->where([
-                'show_id' => $showId,
-                'user_id' => Auth::user()->id
-            ])
-            ->exists();
+        $user = Auth::user();
+
+        return $user && Follow::query()
+                ->where([
+                    'show_id' => $showId,
+                    'user_id' => $user->id
+                ])
+                ->exists();
     }
 }

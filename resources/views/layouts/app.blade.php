@@ -28,6 +28,12 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+    <style>
+        a {
+            text-decoration: none !important;
+        }
+    </style>
+
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -48,7 +54,7 @@
                         <div class="header__nav">
                             <nav class="header__menu mobile-menu">
                                 <ul>
-                                    <li class="active"><a href="./index.html">Homepage</a></li>
+                                    <li class="active"><a href="{{ route('home') }}">Homepage</a></li>
                                     <li><a href="./categories.html">Categories <span class="arrow_carrot-down"></span></a>
                                         <ul class="dropdown">
                                             @foreach($categories as $category)
@@ -58,6 +64,10 @@
                                         </ul>
                                     </li>
                                 </ul>
+                                <form method="POST" action="{{ route('show.search') }}" class="form-inline my-2 my-lg-0">
+                                    @csrf
+                                    <input class="form-control mr-sm-2" name="show" type="search" placeholder="Search" aria-label="Search" style="margin-top: -95px; margin-left: 537px">
+                                </form>
                             </nav>
                         </div>
                     </div>
