@@ -2,14 +2,20 @@
 
 namespace App\Services;
 
+use App\Actions\AdminActions\CreateShowAction;
+use App\Actions\AdminActions\DeleteShowAction;
 use App\Actions\AdminActions\GetAdminsCountAction;
 use App\Actions\AdminActions\GetAllAdminsAction;
+use App\Actions\AdminActions\GetAllCategoriesAction;
+use App\Actions\AdminActions\GetAllShowsAction;
 use App\Actions\AdminActions\GetCategoriesCountAction;
 use App\Actions\AdminActions\GetEpisodesCountAction;
 use App\Actions\AdminActions\GetShowsCountAction;
 use App\Actions\AdminActions\LoginAdminAction;
+use App\Actions\AdminActions\RenderAdminCreateShowViewAction;
 use App\Actions\AdminActions\RenderAdminIndexAction;
 use App\Actions\AdminActions\RenderAdminLoginFormAction;
+use App\Actions\AdminActions\RenderAdminShowsViewAction;
 use App\Actions\AdminActions\RenderAllAdminsViewAction;
 use App\Actions\AdminActions\RenderCreateAdminViewAction;
 use App\Actions\AdminActions\StoreAdminAction;
@@ -69,5 +75,35 @@ class AdminService
     public function storeAdmin(array $data)
     {
         return app(StoreAdminAction::class)($data);
+    }
+
+    public function getAllShows()
+    {
+        return app(GetAllShowsAction::class)();
+    }
+
+    public function renderAdminShowsView($attributes)
+    {
+        return app(RenderAdminShowsViewAction::class)($attributes);
+    }
+
+    public function renderAdminCreateShowView(array $attributes)
+    {
+        return app(RenderAdminCreateShowViewAction::class)($attributes);
+    }
+
+    public function getAllCategories()
+    {
+        return app(GetAllCategoriesAction::class)();
+    }
+
+    public function createShow(array $data, $image)
+    {
+        return app(CreateShowAction::class)($data, $image);
+    }
+
+    public function deleteShow($show)
+    {
+        return app(DeleteShowAction::class)($show);
     }
 }

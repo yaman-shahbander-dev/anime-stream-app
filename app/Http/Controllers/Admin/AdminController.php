@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Helpers\OperationResult;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateAdminRequest;
+use App\Http\Requests\CreateShowRequest;
 use App\Http\Requests\LoginAdminRequest;
+use App\Models\Show\Show;
 use App\Services\AdminService;
 
 class AdminController extends Controller
@@ -68,6 +70,54 @@ class AdminController extends Controller
 
         return redirect()->route('dashboard.admins')->with([
             'success' => 'Admin created successfully!'
+        ]);
+    }
+
+    public function shows()
+    {
+        $attributes = [
+            'shows' => $this->adminService->getAllShows()
+        ];
+
+        return $this->adminService->renderAdminShowsView($attributes);
+    }
+
+    public function createShow()
+    {
+        $attributes = [
+            'categories' => $this->adminService->getAllCategories()
+        ];
+
+        return $this->adminService->renderAdminCreateShowView($attributes);
+    }
+
+    public function storeShow(CreateShowRequest $request)
+    {
+        $show = $this->adminService->createShow($request->validated(), $request->file('image'));
+
+        if ($show instanceof OperationResult) {
+            return redirect()->back()->with([
+                'message' => $show->getMessage()
+            ]);
+        }
+
+        return redirect()->route('dashboard.admins.shows')->with([
+            'success' => 'Show created successfully!'
+        ]);
+    }
+
+    public function deleteShow(Show $show)
+    {
+        $result = $this->adminService->deleteShow($show);
+
+        if ($result instanceof OperationResult) {
+            return redirect()->back()->with([
+                'message' => $show->getMessage()
+            ]);
+        }
+
+        return redirect()->route('dashboard.admins.shows')->with([
+            'success' => 'Show deleted successfully!'
         ]);
     }
 }

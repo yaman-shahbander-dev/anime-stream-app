@@ -44,6 +44,11 @@ Route::controller(AdminController::class)
 
                 Route::get('create', 'create')->name('dashboard.admins.create');
                 Route::post('store', 'store')->name('dashboard.admins.store');
+
+                Route::get('shows', 'shows')->name('dashboard.admins.shows');
+                Route::get('shows/create', 'createShow')->name('dashboard.admins.create.show');
+                Route::post('shows/store', 'storeShow')->name('dashboard.admins.store.show');
+                Route::delete('shows/{show}/delete', 'deleteShow')->name('dashboard.admins.delete.show');
             });
     });
 
