@@ -2,17 +2,22 @@
 
 namespace App\Services;
 
+use App\Actions\AdminActions\CreateGenreAction;
 use App\Actions\AdminActions\CreateShowAction;
+use App\Actions\AdminActions\DeleteGenreAction;
 use App\Actions\AdminActions\DeleteShowAction;
 use App\Actions\AdminActions\GetAdminsCountAction;
 use App\Actions\AdminActions\GetAllAdminsAction;
 use App\Actions\AdminActions\GetAllCategoriesAction;
+use App\Actions\AdminActions\GetAllGenresAction;
 use App\Actions\AdminActions\GetAllShowsAction;
 use App\Actions\AdminActions\GetCategoriesCountAction;
 use App\Actions\AdminActions\GetEpisodesCountAction;
 use App\Actions\AdminActions\GetShowsCountAction;
 use App\Actions\AdminActions\LoginAdminAction;
+use App\Actions\AdminActions\RenderAdminCreateGenreViewAction;
 use App\Actions\AdminActions\RenderAdminCreateShowViewAction;
+use App\Actions\AdminActions\RenderAdminGenresViewAction;
 use App\Actions\AdminActions\RenderAdminIndexAction;
 use App\Actions\AdminActions\RenderAdminLoginFormAction;
 use App\Actions\AdminActions\RenderAdminShowsViewAction;
@@ -105,5 +110,30 @@ class AdminService
     public function deleteShow($show)
     {
         return app(DeleteShowAction::class)($show);
+    }
+
+    public function getAllGenres()
+    {
+        return app(GetAllGenresAction::class)();
+    }
+
+    public function renderAdminGenresView(array $attributes)
+    {
+        return app(RenderAdminGenresViewAction::class)($attributes);
+    }
+
+    public function renderAdminCreateGenreView()
+    {
+        return app(RenderAdminCreateGenreViewAction::class)();
+    }
+
+    public function createGenre(array $data)
+    {
+        return app(CreateGenreAction::class)($data);
+    }
+
+    public function deleteGenre($genre)
+    {
+        return app(DeleteGenreAction::class)($genre);
     }
 }

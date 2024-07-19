@@ -38,17 +38,23 @@ Route::controller(AdminController::class)
         Route::post('login', 'login')->name('login.admin');
 
         Route::middleware('auth:admin')
+            ->name('dashboard.')
             ->group(function () {
-                Route::get('dashboard', 'index')->name('dashboard.admin');
-                Route::get('admins', 'admins')->name('dashboard.admins');
+                Route::get('dashboard', 'index')->name('admin');
+                Route::get('admins', 'admins')->name('admins');
 
-                Route::get('create', 'create')->name('dashboard.admins.create');
-                Route::post('store', 'store')->name('dashboard.admins.store');
+                Route::get('create', 'create')->name('admins.create');
+                Route::post('store', 'store')->name('admins.store');
 
-                Route::get('shows', 'shows')->name('dashboard.admins.shows');
-                Route::get('shows/create', 'createShow')->name('dashboard.admins.create.show');
-                Route::post('shows/store', 'storeShow')->name('dashboard.admins.store.show');
-                Route::delete('shows/{show}/delete', 'deleteShow')->name('dashboard.admins.delete.show');
+                Route::get('shows', 'shows')->name('admins.shows');
+                Route::get('shows/create', 'createShow')->name('admins.create.show');
+                Route::post('shows/store', 'storeShow')->name('admins.store.show');
+                Route::delete('shows/{show}/delete', 'deleteShow')->name('admins.delete.show');
+
+                Route::get('genres', 'genres')->name('admins.genres');
+                Route::get('genres/create', 'createGenre')->name('admins.create.genre');
+                Route::post('genres/store', 'storeGenre')->name('admins.store.genre');
+                Route::delete('genres/{category}/delete', 'deleteGenre')->name('admins.delete.genre');
             });
     });
 

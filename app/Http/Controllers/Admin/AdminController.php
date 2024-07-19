@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Helpers\OperationResult;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateAdminRequest;
+use App\Http\Requests\CreateGenreRequest;
 use App\Http\Requests\CreateShowRequest;
 use App\Http\Requests\LoginAdminRequest;
+use App\Models\Category\Category;
 use App\Models\Show\Show;
 use App\Services\AdminService;
 
@@ -112,12 +114,56 @@ class AdminController extends Controller
 
         if ($result instanceof OperationResult) {
             return redirect()->back()->with([
-                'message' => $show->getMessage()
+                'message' => $result->getMessage()
             ]);
         }
 
         return redirect()->route('dashboard.admins.shows')->with([
             'success' => 'Show deleted successfully!'
+        ]);
+    }
+
+    public function genres()
+    {
+        $attributes = [
+            'genres' => $this->adminService->getAllGenres()
+        ];
+
+        return $this->adminService->renderAdminGenresView($attributes);
+    }
+
+    public function createGenre()
+    {
+        return $this->adminService->renderAdminCreateGenreView();
+    }
+
+    public function storeGenre(CreateGenreRequest $request)
+    {
+        $genre = $this->adminService->createGenre($request->validated());
+
+        if ($genre instanceof OperationResult) {
+            return redirect()->back()->with([
+                'message' => $genre->getMessage()
+            ]);
+        }
+
+        return redirect()->route('dashboard.admins.genres')->with([
+            'success' => 'Genre created successfully!'
+        ]);
+    }
+
+    public function deleteGenre(Category $category)
+    {
+        $result = $this->adminService->deleteGenre($category);
+
+        if ($result instanceof OperationResult) {
+            return redirect()->back()->with([
+                'message' => $result->getMessage()
+            ]);
+        }
+
+        return redirect()->route('dashboard.admins.genres')->with([
+            'success' => 'Genre deleted successfully!'
         ]);
     }
 }
